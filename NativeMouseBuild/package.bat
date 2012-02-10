@@ -1,0 +1,1 @@
+adt -package ane NativeMouse.ane extension.xml -swc NativeMouseLib.swc -platform Windows-x86 library.swf libNativeMouse.dll
