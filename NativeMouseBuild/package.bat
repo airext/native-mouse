@@ -1,1 +1,1 @@
-adt -package ane NativeMouse.ane extension.xml -swc NativeMouseLib.swc -platform Windows-x86 library.swf libNativeMouse.dll
+adt -package -storetype pkcs12 -keystore log5f.p12 -storepass vopli -target ane NativeMouse.ane extension.xml -swc NativeMouseLib.swc -platform Windows-x86 library.swf libNativeMouseWin.dll

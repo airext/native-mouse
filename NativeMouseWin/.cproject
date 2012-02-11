@@ -41,7 +41,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.so.debug.106618547" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.so.debug">
 								<option defaultValue="true" id="gnu.c.link.mingw.so.debug.option.shared.1900789734" name="Shared (-shared)" superClass="gnu.c.link.mingw.so.debug.option.shared" valueType="boolean"/>
 								<option id="gnu.c.link.option.userobjs.415837885" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
-									<listOptionValue builtIn="false" value="&quot;D:\tools\Adobe\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;E:\Apps\FlashBuilder\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.50087129" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -95,7 +95,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.so.release.1472604318" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.so.release">
 								<option defaultValue="true" id="gnu.c.link.mingw.so.release.option.shared.602233046" name="Shared (-shared)" superClass="gnu.c.link.mingw.so.release.option.shared" valueType="boolean"/>
 								<option id="gnu.c.link.option.userobjs.431434755" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
-									<listOptionValue builtIn="false" value="&quot;D:\tools\Adobe\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
+									<listOptionValue builtIn="false" value="E:\Apps\FlashBuilder\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.300321030" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -123,5 +123,8 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.so.debug.723410887;cdt.managedbuild.config.gnu.mingw.so.debug.723410887.;cdt.managedbuild.tool.gnu.c.compiler.mingw.so.debug.1818014864;cdt.managedbuild.tool.gnu.c.compiler.input.705471093">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/NativeMouseWin"/>
 	</storageModule>
 </cproject>

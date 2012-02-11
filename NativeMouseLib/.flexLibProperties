@@ -4,6 +4,7 @@
     <classEntry path="org.log5f.air.extensions.INativeMouse"/>
     <classEntry path="org.log5f.air.extensions.NativeMouse"/>
     <classEntry path="org.log5f.air.extensions.events.NativeMouseEvent"/>
+    <classEntry path="org.log5f.air.extensions.NativeMouseButton"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

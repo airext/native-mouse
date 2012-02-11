@@ -104,33 +104,66 @@ package org.log5f.air.extensions
 		private function statusHandler(event:StatusEvent):void
 		{
 			var info:Object;
+			var code:String = event.code;
+			var button:NativeMouseButton = null;
 			
-			switch (event.code)
+			if (code.search("LeftButton") != -1)
+				button = NativeMouseButton.LEFT;
+			else if (code.search("MiddleButton") != -1)
+				button = NativeMouseButton.MIDDLE;
+			else if (code.search("RightButton") != -1)
+				button = NativeMouseButton.RIGHT;
+			
+			switch (code)
 			{
-				case "Mouse.Down.LeftButton" :
-					
-					info = this.getMouseInfo();
-					
-					this.dispatchEvent(new NativeMouseEvent(
-						NativeMouseEvent.NATIVE_MOUSE_DOWN, info.mouseX, info.mouseY));
-					
-					break;
-				
-				case "Mouse.Up.LeftButton" :
-					
-					info = this.getMouseInfo();
-					
-					this.dispatchEvent(new NativeMouseEvent(
-						NativeMouseEvent.NATIVE_MOUSE_UP, info.mouseX, info.mouseY));
-					
-					break;
-				
 				case "Mouse.Move" :
 					
 					info = this.getMouseInfo();
 					
 					this.dispatchEvent(new NativeMouseEvent(
-						NativeMouseEvent.NATIVE_MOUSE_MOVE, info.mouseX, info.mouseY));
+						NativeMouseEvent.NATIVE_MOUSE_MOVE, null, info.mouseX, info.mouseY));
+					
+					break;
+				
+				case "Mouse.Wheel" :
+					
+					info = this.getMouseInfo();
+					
+					this.dispatchEvent(new NativeMouseEvent(
+						NativeMouseEvent.NATIVE_MOUSE_WHEEL, null, info.mouseX, info.mouseY));
+					
+					break;
+				
+				case "Mouse.Up.LeftButton" :
+				case "Mouse.Up.MiddleButton" :
+				case "Mouse.Up.RightButton" :
+					
+					info = this.getMouseInfo();
+					
+					this.dispatchEvent(new NativeMouseEvent(
+						NativeMouseEvent.NATIVE_MOUSE_UP, button, info.mouseX, info.mouseY));
+					
+					break;
+				
+				case "Mouse.Down.LeftButton" :
+				case "Mouse.Down.MiddleButton" :
+				case "Mouse.Down.RightButton" :
+					
+					info = this.getMouseInfo();
+					
+					this.dispatchEvent(new NativeMouseEvent(
+						NativeMouseEvent.NATIVE_MOUSE_DOWN, button, info.mouseX, info.mouseY));
+					
+					break;
+
+				case "Mouse.DoubleClick.LeftButton" :
+				case "Mouse.DoubleClick.MiddleButton" :
+				case "Mouse.DoubleClick.RightButton" :
+					
+					info = this.getMouseInfo();
+					
+					this.dispatchEvent(new NativeMouseEvent(
+						NativeMouseEvent.NATIVE_MOUSE_DOUBLE_CLICK, button, info.mouseX, info.mouseY));
 					
 					break;
 			}

@@ -49,16 +49,58 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
         switch (wParam)
         {
-            case WM_LBUTTONDOWN :
-            	dispatchMouseEvent((const uint8_t*) "Mouse.Down.LeftButton");
-                break;
+        	// Mouse
+
+            case WM_MOUSEMOVE :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.Move");
+            	break;
+
+        	// Left Button
 
             case WM_LBUTTONUP :
             	dispatchMouseEvent((const uint8_t*) "Mouse.Up.LeftButton");
                 break;
 
-            case WM_MOUSEMOVE :
-            	dispatchMouseEvent((const uint8_t*) "Mouse.Move");
+            case WM_LBUTTONDOWN :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.Down.LeftButton");
+                break;
+
+            case WM_LBUTTONDBLCLK :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.DoubleClick.LeftButton");
+                break;
+
+			// Middle Button
+
+            case WM_MBUTTONUP :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.Up.MiddleButton");
+                break;
+
+            case WM_MBUTTONDOWN :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.Down.MiddleButton");
+                break;
+
+            case WM_MBUTTONDBLCLK :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.DoubleClick.MiddleButton");
+                break;
+
+			// Right Button
+
+            case WM_RBUTTONUP :
+				dispatchMouseEvent((const uint8_t*) "Mouse.Up.RightButton");
+				  break;
+
+			case WM_RBUTTONDOWN :
+				dispatchMouseEvent((const uint8_t*) "Mouse.Down.RightButton");
+				break;
+
+			case WM_RBUTTONDBLCLK :
+				dispatchMouseEvent((const uint8_t*) "Mouse.DoubleClick.RightButton");
+				break;
+
+			// Wheel
+
+            case WM_MOUSEWHEEL :
+            	dispatchMouseEvent((const uint8_t*) "Mouse.Wheel");
             	break;
         }
     }

@@ -2,6 +2,8 @@ package org.log5f.air.extensions.events
 {
 	import flash.events.Event;
 	
+	import org.log5f.air.extensions.NativeMouseButton;
+	
 	public class NativeMouseEvent extends Event
 	{
 		//----------------------------------------------------------------------
@@ -9,12 +11,16 @@ package org.log5f.air.extensions.events
 		//	Class constants
 		//
 		//----------------------------------------------------------------------
+
+		public static const NATIVE_MOUSE_UP:String				= "nativeMouseUp";
+
+		public static const NATIVE_MOUSE_MOVE:String			= "nativeMouseMove";
 		
-		public static const NATIVE_MOUSE_DOWN:String	= "nativeMosueDown";
-
-		public static const NATIVE_MOUSE_UP:String		= "nativeMosueUp";
-
-		public static const NATIVE_MOUSE_MOVE:String	= "nativeMosueMove";
+		public static const NATIVE_MOUSE_DOWN:String			= "nativeMouseDown";
+		
+		public static const NATIVE_MOUSE_WHEEL:String			= "nativeMouseWheel";
+		
+		public static const NATIVE_MOUSE_DOUBLE_CLICK:String	= "nativeMouseDoubleClick";
 		
 		//----------------------------------------------------------------------
 		//
@@ -23,10 +29,11 @@ package org.log5f.air.extensions.events
 		//----------------------------------------------------------------------
 		
 		/** Constructor */
-		public function NativeMouseEvent(type:String, mouseX:Number=NaN, mouseY:Number=NaN, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function NativeMouseEvent(type:String, button:NativeMouseButton=null, mouseX:Number=NaN, mouseY:Number=NaN, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 			
+			this._button = button;
 			this._mouseX = mouseX;
 			this._mouseY = mouseY;
 		}
@@ -36,6 +43,19 @@ package org.log5f.air.extensions.events
 		//	Proeprties
 		//
 		//----------------------------------------------------------------------
+		
+		//-----------------------------------
+		//	button
+		//-----------------------------------
+		
+		/** @private */
+		private var _button:NativeMouseButton;
+		
+		/** TODO (mrozdobudko): TBD */
+		public function get button():NativeMouseButton
+		{
+			return this._button;
+		}
 		
 		//-----------------------------------
 		//	mouseX
@@ -72,8 +92,9 @@ package org.log5f.air.extensions.events
 		/** @inheritDoc */
 		override public function clone():Event
 		{
-			return new NativeMouseEvent(this.type, this.mouseX, this.mouseY, 
-										this.bubbles, this.cancelable);
+			return new NativeMouseEvent(this.type, this.button, this.mouseX, 
+										this.mouseY, this.bubbles, 
+										this.cancelable);
 		}
 	}
 }

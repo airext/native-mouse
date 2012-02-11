@@ -7,8 +7,8 @@
 			
 			import mx.events.FlexEvent;
 			
-			import org.log5f.air.extensions.events.NativeMouseEvent;
 			import org.log5f.air.extensions.NativeMouse;
+			import org.log5f.air.extensions.events.NativeMouseEvent;
 			
 			private var mouse:NativeMouse;
 			
@@ -20,25 +20,47 @@
 				{
 					this.mouse.captureMouse();
 					
-					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_MOVE, nativeMouseMovehandler);
-					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_DOWN, nativeDownMovehandler);
-					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_UP, nativeUpMovehandler);
+					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_UP, nativeMouseUpHandler);
+					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_MOVE, nativeMouseMoveHandler);
+					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_DOWN, nativeMouseDownHandler);
+					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_WHEEL, nativeMouseWheelHandler);
+					this.mouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_DOUBLE_CLICK, nativeMouseDoubleClickHandler);
 				}
 			}
 			
-			protected function nativeMouseMovehandler(event:NativeMouseEvent):void
+			protected function nativeMouseUpHandler(event:NativeMouseEvent):void
 			{
+				const btn:String = event.button ? event.button.name : "N/A";
+				
+				trace("MouseUp", btn, event.mouseX, event.mouseY);
+			}
+			
+			protected function nativeMouseMoveHandler(event:NativeMouseEvent):void
+			{
+				const btn:String = event.button ? event.button.name : "N/A";
+				
 //				trace("Mouse Move", event.mouseX, event.mouseY);
 			}
 			
-			protected function nativeDownMovehandler(event:NativeMouseEvent):void
+			protected function nativeMouseDownHandler(event:NativeMouseEvent):void
 			{
-				trace("MouseDown", event.mouseX, event.mouseY);
+				const btn:String = event.button ? event.button.name : "N/A";
+				
+				trace("MouseDown", btn, event.mouseX, event.mouseY);
 			}
 			
-			protected function nativeUpMovehandler(event:NativeMouseEvent):void
+			protected function nativeMouseWheelHandler(event:NativeMouseEvent):void
 			{
-				trace("MouseUp",event.mouseX, event.mouseY);
+				const btn:String = event.button ? event.button.name : "N/A";
+				
+				trace("MouseWheel", btn, event.mouseX, event.mouseY);
+			}
+
+			protected function nativeMouseDoubleClickHandler(event:NativeMouseEvent):void
+			{
+				const btn:String = event.button ? event.button.name : "N/A";
+				
+				trace("MouseDoubleClick", btn, event.mouseX, event.mouseY);
 			}
 			
 		]]>
