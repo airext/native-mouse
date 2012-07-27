@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design>
+	<namespaces>
+		<namespace prefix="log5f" uri="http://log5f.org/ane" manifest="manifest.xml"/>
+	</namespaces>
+</design>

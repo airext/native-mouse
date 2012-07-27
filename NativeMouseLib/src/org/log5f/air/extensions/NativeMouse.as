@@ -58,7 +58,7 @@ package org.log5f.air.extensions
 		/** @inheritDoc */
 		public function isSupported():Boolean
 		{
-			return this.context.call("isSupported") as Boolean;
+			return this.context && this.context.call("isSupported") as Boolean;
 		}
 		
 		/** @inheritDoc */

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<componentPackage>
+	<component id="NativeMouse" class="org.log5f.air.extensions.tags.NativeMouseTag" />
+</componentPackage>

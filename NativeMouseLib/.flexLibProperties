@@ -5,7 +5,14 @@
     <classEntry path="org.log5f.air.extensions.NativeMouse"/>
     <classEntry path="org.log5f.air.extensions.events.NativeMouseEvent"/>
     <classEntry path="org.log5f.air.extensions.NativeMouseButton"/>
+    <classEntry path="org.log5f.air.extensions.tags.NativeMouseTag"/>
   </includeClasses>
-  <includeResources/>
-  <namespaceManifests/>
+  <includeResources>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+    <resourceEntry destPath="extension.xml" sourcePath="extension.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://log5f.org/ane"/>
+  </namespaceManifests>
 </flexLibProperties>
