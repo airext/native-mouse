@@ -1,15 +1,13 @@
 package org.log5f.air.extensions.tags
 {
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	import flash.geom.Point;
 	
 	import mx.core.IMXMLObject;
 	import mx.events.PropertyChangeEvent;
 	
-	import org.log5f.air.extensions.NativeMouse;
-	import org.log5f.air.extensions.events.NativeMouseEvent;
+	import org.log5f.air.extensions.mouse.NativeMouse;
+	import org.log5f.air.extensions.mouse.events.NativeMouseEvent;
 	
 	//-------------------------------------
 	//	Events
@@ -133,7 +131,7 @@ package org.log5f.air.extensions.tags
 			if (this.isCaptured)
 				return;
 			
-			if (this.isSupported())
+			if (NativeMouse.isSupported())
 			{
 				this.isCaptured = true;
 				
@@ -153,7 +151,7 @@ package org.log5f.air.extensions.tags
 			if (!this.isCaptured)
 				return;
 			
-			if (this.isSupported())
+			if (NativeMouse.isSupported())
 			{
 				this.isCaptured = false;
 				

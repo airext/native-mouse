@@ -1,4 +1,4 @@
-package org.log5f.air.extensions
+package org.log5f.air.extensions.mouse.enum
 {
 	/**
 	 * The NativeMouseButton class contains enumeration of mouse buttons.

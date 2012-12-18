@@ -1,15 +1,15 @@
-package org.log5f.air.extensions
+package org.log5f.air.extensions.mouse
 {
 	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
-	import org.log5f.air.extensions.events.NativeMouseEvent;
+	import org.log5f.air.extensions.mouse.events.NativeMouseEvent;
+	import org.log5f.air.extensions.mouse.enum.NativeMouseButton;
 	
-	[Event(name="nativeMouseMove", type="org.log5f.air.extensions.events.NativeMouseEvent")]
-	[Event(name="nativeMouseDown", type="org.log5f.air.extensions.events.NativeMouseEvent")]
-	[Event(name="nativeMouseUp", type="org.log5f.air.extensions.events.NativeMouseEvent")]
+	[Event(name="nativeMouseMove", type="org.log5f.air.extensions.mouse.events.NativeMouseEvent")]
+	[Event(name="nativeMouseDown", type="org.log5f.air.extensions.mouse.events.NativeMouseEvent")]
+	[Event(name="nativeMouseUp", type="org.log5f.air.extensions.mouse.events.NativeMouseEvent")]
 	
 	public class NativeMouse extends EventDispatcher implements INativeMouse
 	{
@@ -24,6 +24,37 @@ package org.log5f.air.extensions
 		
 		//----------------------------------------------------------------------
 		//
+		//	Class variables
+		//
+		//----------------------------------------------------------------------
+		
+		/** @priate */
+		private static var context:ExtensionContext = null;
+		
+		//----------------------------------------------------------------------
+		//
+		//	Static initialization
+		//
+		//----------------------------------------------------------------------
+		
+		{
+			context = ExtensionContext.createExtensionContext(ID, null);
+		}
+		
+		//----------------------------------------------------------------------
+		//
+		//	Class methods
+		//
+		//----------------------------------------------------------------------
+		
+		/** @inheritDoc */
+		public static function isSupported():Boolean
+		{
+			return context && context.call("isSupported") as Boolean;
+		}
+		
+		//----------------------------------------------------------------------
+		//
 		//	Constructor
 		//
 		//----------------------------------------------------------------------
@@ -32,8 +63,6 @@ package org.log5f.air.extensions
 		public function NativeMouse()
 		{
 			super();
-			
-			this.context = ExtensionContext.createExtensionContext(ID, null);
 		}
 		
 		//----------------------------------------------------------------------
@@ -41,9 +70,6 @@ package org.log5f.air.extensions
 		//	Variables
 		//
 		//----------------------------------------------------------------------
-		
-		/** @private */
-		private var context:ExtensionContext;
 		
 		//----------------------------------------------------------------------
 		//
@@ -56,19 +82,13 @@ package org.log5f.air.extensions
 		//-----------------------------------
 		
 		/** @inheritDoc */
-		public function isSupported():Boolean
-		{
-			return this.context && this.context.call("isSupported") as Boolean;
-		}
-		
-		/** @inheritDoc */
 		public function captureMouse():Boolean
 		{
-			const result:Boolean = this.context.call("captureMouse") as Boolean;
+			const result:Boolean = context.call("captureMouse") as Boolean;
 			
 			if (result)
 			{
-				this.context.addEventListener(StatusEvent.STATUS, statusHandler);
+				context.addEventListener(StatusEvent.STATUS, statusHandler);
 			}
 			
 			return result;
@@ -77,9 +97,9 @@ package org.log5f.air.extensions
 		/** @inheritDoc */
 		public function releaseMouse():Boolean
 		{
-			const result:Boolean = this.context.call("releaseMouse") as Boolean;
+			const result:Boolean = context.call("releaseMouse") as Boolean;
 			
-			this.context.removeEventListener(StatusEvent.STATUS, statusHandler);
+			context.removeEventListener(StatusEvent.STATUS, statusHandler);
 			
 			return result;
 		}
@@ -89,7 +109,7 @@ package org.log5f.air.extensions
 		{
 			var result:Object = {};
 			
-			this.context.call("getMouseInfo", result);
+			context.call("getMouseInfo", result);
 			
 			return result;
 		}

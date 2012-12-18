@@ -1,8 +1,8 @@
-package org.log5f.air.extensions.events
+package org.log5f.air.extensions.mouse.events
 {
 	import flash.events.Event;
 	
-	import org.log5f.air.extensions.NativeMouseButton;
+	import org.log5f.air.extensions.mouse.enum.NativeMouseButton;
 	
 	public class NativeMouseEvent extends Event
 	{

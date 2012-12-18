@@ -1,12 +1,9 @@
-package org.log5f.air.extensions
+package org.log5f.air.extensions.mouse
 {
 	import flash.events.IEventDispatcher;
-	import flash.geom.Point;
 
 	public interface INativeMouse extends IEventDispatcher
-	{
-		function isSupported():Boolean;
-		
+	{	
 		function captureMouse():Boolean;
 		
 		function releaseMouse():Boolean;
