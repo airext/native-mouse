@@ -1,28 +1,59 @@
+Overview
+-------
+
+The NativeMouse is a simple extension for Adobe AIR for Desktop that provides information about system mouse.
+
 ActionScript Usage
 -------
 
-Using NativeMouse is simple:
+Getting mouse current position through `getMouseInfo()` method:
 
 	...
-	var nativeMouse:INativeMouse = new NativeMouse();
 	
-	if (nativeMouse.isSupported())
+	if (NativeMouse.isSupported)
 	{
-		nativeMouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_MOVE, nativeMouseMoveHandler);
+		var info:Object = new NativeMouse().getMouseInfo();
+		
+		trace(info.mouseX, info.mouseY);
+	}
+	
+	...
+
+Using `NativeMouse` asynchronously:
+
+	...
+
+	if (NativeMouse.isSupported())
+	{
+		var nativeMouse:INativeMouse = new NativeMouse();
+	
+		nativeMouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_MOVE, nativeMouseHandler);
+		nativeMouse.addEventListener(NativeMouseEvent.NATIVE_MOUSE_DOWN, nativeMouseHandler);
 		
 		nativeMouse.captureMouse();
 	}
 	
-	private function nativeMouseMoveHandler(event:NativeMouseEvent):void
+	private function nativeMouseHandler(event:NativeMouseEvent):void
 	{
-		this.label.text = new Point(event.mouseX, event.mouseY);
+		this.mousePositionLabel.text = new Point(event.mouseX, event.mouseY);
+		
+		switch (event.button)
+		{
+			case NativeMouseButton.LEFT :
+				// 
+				break;
+			
+			case NativeMouseButton.RIGHT :
+				// 
+				break;
+		}
 	}
 	...
 
 MXML Usage
 -------
 
-In MXML use NativeMouseTag wrapper as follow:
+The `NativeMouseTag` is designed to be used in MXML code: 
 
 	...
 	<fx:Declarations>
@@ -31,3 +62,9 @@ In MXML use NativeMouseTag wrapper as follow:
 	
 	<s:Label text="{nativeMouse.coordinates}" />
 	...
+	
+
+References
+-------
+
+Code from [DesktopMouse](https://github.com/pcichon/DesktopMouse) has been used for getMouseInfo() for Windows.
