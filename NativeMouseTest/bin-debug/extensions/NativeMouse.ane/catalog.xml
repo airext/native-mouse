@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-components />
+    <feature-files />
+  </features>
+  <components>
+    <component className="org.log5f.air.extensions.tags:NativeMouseTag" name="NativeMouse" uri="http://log5f.org/ane"  />
+  </components>
+  <libraries>
+    <library path="library.swf">
+      <script name="mx/events/PropertyChangeEventKind" mod="1303837786967" signatureChecksum="1558463415" >
+        <def id="mx.events:PropertyChangeEventKind" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/mx_internal" mod="1314174884728" signatureChecksum="642982261" >
+        <def id="mx.core:mx_internal" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="org/log5f/air/extensions/mouse/INativeMouse" mod="1355863971000" signatureChecksum="1647136582" >
+        <def id="org.log5f.air.extensions.mouse:INativeMouse" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="org/log5f/air/extensions/mouse/NativeMouse" mod="1355864565000" signatureChecksum="2492861259" >
+        <def id="org.log5f.air.extensions.mouse:NativeMouse" /> 
+        <dep id="org.log5f.air.extensions.mouse.events:NativeMouseEvent" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="e" /> 
+        <dep id="org.log5f.air.extensions.mouse.enum:NativeMouseButton" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="flash.events:StatusEvent" type="s" /> 
+        <dep id="org.log5f.air.extensions.mouse.enum:NativeMouseButton" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+        <dep id="org.log5f.air.extensions.mouse:INativeMouse" type="i" /> 
+      </script>
+      <script name="mx/core/IMXMLObject" mod="1303837772670" signatureChecksum="2331648173" >
+        <def id="mx.core:IMXMLObject" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="org/log5f/air/extensions/tags/NativeMouseTag" mod="1355864601000" signatureChecksum="3452164674" >
+        <def id="org.log5f.air.extensions.tags:NativeMouseTag" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="org.log5f.air.extensions.mouse.events:NativeMouseEvent" type="e" /> 
+        <dep id="mx.events:PropertyChangeEvent" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="org.log5f.air.extensions.mouse.events:NativeMouseEvent" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="org.log5f.air.extensions.mouse:NativeMouse" type="i" /> 
+        <dep id="mx.core:IMXMLObject" type="i" /> 
+      </script>
+      <script name="mx/events/PropertyChangeEvent" mod="1303837787248" signatureChecksum="4241212989" >
+        <def id="mx.events:PropertyChangeEvent" /> 
+        <dep id="mx.events:PropertyChangeEventKind" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="org/log5f/air/extensions/mouse/enum/NativeMouseButton" mod="1355863957000" signatureChecksum="2649841284" >
+        <def id="org.log5f.air.extensions.mouse.enum:NativeMouseButton" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="_0468d4d1ccedb1e6c07f97ef93554eeed66718701653090d5e24eb840463fd02_flash_display_Sprite" mod="1355864601961" signatureChecksum="1038514665" >
+        <def id="_0468d4d1ccedb1e6c07f97ef93554eeed66718701653090d5e24eb840463fd02_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="org/log5f/air/extensions/mouse/events/NativeMouseEvent" mod="1355863957000" signatureChecksum="4085567411" >
+        <def id="org.log5f.air.extensions.mouse.events:NativeMouseEvent" /> 
+        <dep id="org.log5f.air.extensions.mouse.enum:NativeMouseButton" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <keep-as3-metadata>
+        <metadata name="Transient" />
+        <metadata name="Bindable" />
+        <metadata name="ChangeEvent" />
+        <metadata name="Managed" />
+        <metadata name="NonCommittingChangeEvent" />
+      </keep-as3-metadata>
+      <digests>
+        <digest type="SHA-256" signed="false" value="48ff13c2398557736cc5af8b12ce9a206b21c72181fa229216fbc0c5849267c5"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+    <file path="design.xml" mod="1355687961000" />
+    <file path="extension.xml" mod="1355864662000" />
+    <file path="manifest.xml" mod="1355687961000" />
+  </files>
+</swc>

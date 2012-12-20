@@ -1,0 +1,45 @@
+<signatures>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="PackageSignature">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      <SignatureMethod Algorithm="http://www.w3.org/TR/xmldsig-core#rsa-sha1"/>
+      <Reference URI="#PackageContents">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <DigestValue>mWrf2+S9o6QR+exOeUf4EIk6j2+Z0LKc1bgLhMW9KbI=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue Id="PackageSignatureValue">gQvvf4/7sf/k++4154unE/fLCDaXCl46XkknCaKFlZk311TPNhi3LNNHHqjNqgf+NTa/1A1zhlSZ
+hTJjtGvFIa/+j2EkChi0f08F4QuuBtPXPDnh/lp11XzEIjAWqrpw3qRL9Rtg71hHtzNZzKy7N5Ng
+VB+O85jRXynQlh0eqDYVPxKD/pdEOQMBBoZbZjKPsm99CuJ9mfnYHzOs6Usf3SREe50uMV/Oymh9
+QsRTQcSsyKHSqeLFzzX2VCAIeVoyCTOoha6aAjc/EB42Nbo3oxJ+Wo0SXoKpaSYzxqG6BmXX8ISR
+Y5XO7Y7lswR8I8dFJ6DRvrefo++98OEdY/Jcqw==</SignatureValue>
+    <KeyInfo>
+      <X509Data>
+        <X509Certificate>MIIDITCCAgmgAwIBAgIaNjVhODg3NGE6MTM1NjdhYThiNmI6LTgwMDAwDQYJKoZIhvcNAQEFBQAw
+OzELMAkGA1UEBhMCVUExDjAMBgNVBAoTBUxvZzVGMQwwCgYDVQQLEwNBTkUxDjAMBgNVBAMTBWxv
+ZzVmMB4XDTEyMDIwOTE0Mjg0NFoXDTE3MDIxMDE0Mjg0NFowOzELMAkGA1UEBhMCVUExDjAMBgNV
+BAoTBUxvZzVGMQwwCgYDVQQLEwNBTkUxDjAMBgNVBAMTBWxvZzVmMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAsh5HVURBD6Q0oK9AfOw9zKKD49GEqy6X3slUv5NoLswS7Fllheg2LmL2
+vJ6JfVRhUgfrgY0CnHM3OFhi8KHdQCVVMK/ROUlbIUaQlT3aa9F8CNF6es4FFmdJBpE0RFGA2PqG
+IftR5cbjWxn0hsr+cp9c0tTTd9dSwLwy6/plmi63u9gCJXnBlBKxKfYOgrmRFQRp+WbkyN575Glv
+/0O4Yfz/tEeZouf/twOYEmvjt05CFb8l/tRNSmYcxUNeR0ITR/dzAM1fdK3REEcgtYbENMeitl4j
+dv9Df5LaLjVKSaln0kLFn+4tpLWSmN97l7hwlJ/x5EoEzdE7xthomNJGlQIDAQABoxcwFTATBgNV
+HSUEDDAKBggrBgEFBQcDAzANBgkqhkiG9w0BAQUFAAOCAQEAclHCgoKtnEWC7Vp+N1Anl8InnDiF
+6BXinaAqi8sUyp1s5J94hXy9SMpPfxfZXSJsvBnmD+WjHEEOKH+kHjNwjpclmGsBZ4SDvp2CZR1I
+IRxPNgHlv7V7dhAFtXxRauEL5QQynoDf7lkTg16cGO0l3JQ/5w7z/fbupEsrsKOZ4RPaAGR92D/h
+ub7VH/8koxowOeTniJpK/QG+p6fPgyxcb3nNSpedzUoHvwVly5GIbPz5SzTDKsy0BUoj7RqyIjqi
+HnzW+xxr5pMrGCHgS9dIX4JeAJ3WQvSfWmdbSJcZFtDe5fjtl5ADBgOBIsX5qb/JpFFmVlvbID8C
+NQF1gvY1VQ==</X509Certificate>
+      </X509Data>
+    </KeyInfo>
+    <Object>
+      <Manifest Id="PackageContents">
+        <Reference URI="mimetype"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>QfjPqwYNSozTaKi3Ar1Veog4uaFk5DPieQA0v9uRJdY=</DigestValue></Reference><Reference URI="META-INF/ANE/extension.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>IHtnkRRWv9ahYnZcUyMVNrHYOeG7D7iCVO3wpWOiGzc=</DigestValue></Reference><Reference URI="catalog.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>yAXPQg6rI28egQQsEb7/L0Mw0qcgrJhIhFwR0dD/08A=</DigestValue></Reference><Reference URI="design.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>WCYW6/uw5ME756enM0tQIuyYNSWJDK+m7VfVrUvcQCw=</DigestValue></Reference><Reference URI="extension.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>IHtnkRRWv9ahYnZcUyMVNrHYOeG7D7iCVO3wpWOiGzc=</DigestValue></Reference><Reference URI="library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>SP8TwjmFV3Nsxa+LEs6aIGshxyGB+iKSFvvAxYSSZ8U=</DigestValue></Reference><Reference URI="manifest.xml"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>4lvuptRU1SvnhfmGKw5dmqi3OUlKWB6nzq45BmFhKKk=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>SP8TwjmFV3Nsxa+LEs6aIGshxyGB+iKSFvvAxYSSZ8U=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/NativeMouse"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>mfFFYWtOWpez8a0S8tkyHejh26to5GMt/VAzi9kMi7w=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/Resources"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>WZkbUbjuFbWfB+xFlClXpM6QSUJXdmlk9d9gt8eZjkI=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/Versions/A/NativeMouse"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>YdhoNuiOZKLfBR1RPRIJYmTAu84gbZcfxZ4ZOyJ6o4s=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/Versions/A/Resources/en.lproj/InfoPlist.strings"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>Oc8u4Ht7Mz58F50L9NeYpbcq9qTlhPUeZCcDu/pPyCg=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/Versions/A/Resources/Info.plist"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>PRBTVzrQ3FLnHOJ/B0DTGLnMkjyue8CEVR27G+1Ofzc=</DigestValue></Reference><Reference URI="META-INF/ANE/MacOS-x86/NativeMouse.framework/Versions/Current"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>VZrq0IJk1XldOQlxjN0Fq9SVcuhP5VWQ7vMaiKCP3/0=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/libNativeMouseWin.dll"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>aDW69fgWG9ljvx7p66FbsMoD7eiw55H8HpwGO3YrPXk=</DigestValue></Reference><Reference URI="META-INF/ANE/Windows-x86/library.swf"><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod><DigestValue>SP8TwjmFV3Nsxa+LEs6aIGshxyGB+iKSFvvAxYSSZ8U=</DigestValue></Reference>
+      </Manifest>
+    </Object>
+    
+  </Signature>
+</signatures>

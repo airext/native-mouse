@@ -18,53 +18,6 @@ FREContext context;
 
 id monitorId;
 
-//------------------------------------------------------------------------------
-//
-//	Private Functions
-//
-//------------------------------------------------------------------------------
-
-void dispatchMouseEvent(const uint8_t* code)
-{
-	FREDispatchStatusEventAsync(context, code, (const uint8_t *) "info");
-}
-
-//------------------------------------------------------------------------------
-//
-//	Event Handler
-//
-//------------------------------------------------------------------------------
-
-void mouseHandler(NSEvent *event)
-{
-    switch (event.type)
-    {
-        case NSMouseMoved:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Move");
-            break;
-            
-        case NSLeftMouseDown:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Down.LeftButton");
-            break;
-            
-        case NSLeftMouseUp:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Up.LeftButton");
-            break;
-            
-        case NSRightMouseDown:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Down.RightButton");
-            break;
-            
-        case NSRightMouseUp:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Up.RightButton");
-            break;
-            
-        case NSScrollWheel:
-            dispatchMouseEvent((const uint8_t*) "Mouse.Wheel");
-            break;
-    }
-}
-
 //------------------------------------------------------------------------
 //
 //  API
@@ -94,7 +47,32 @@ FREObject captureMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
          (NSLeftMouseDownMask | NSLeftMouseUpMask | NSRightMouseDownMask | NSRightMouseUpMask | NSMouseMovedMask | NSScrollWheelMask)
             handler:^(NSEvent* incomingEvent)
         {
-            mouseHandler(incomingEvent);
+            switch ([incomingEvent type])
+            {
+                case NSMouseMoved:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
+                    break;
+                    
+                case NSLeftMouseDown:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.LeftButton", (const uint8_t *) "info");
+                    break;
+                    
+                case NSLeftMouseUp:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Up.LeftButton", (const uint8_t *) "info");
+                    break;
+                    
+                case NSRightMouseDown:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.RightButton", (const uint8_t *) "info");
+                    break;
+                    
+                case NSRightMouseUp:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Up.RightButton", (const uint8_t *) "info");
+                    break;
+                    
+                case NSScrollWheel:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Wheel", (const uint8_t *) "info");
+                    break;
+            }
         }];
         
         FRENewObjectFromBool((uint32_t) true, &result);
@@ -131,6 +109,8 @@ FREObject releaseMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
 FREObject getMouseInfo(FREContext ctx, void *data, uint32_t argc, FREObject argv[])
 {
     FREObject result = argv[0];
+    
+    NSLog(@"getMouseInfo()");
     
 	NSPoint mouse = [NSEvent mouseLocation];
     
@@ -182,11 +162,19 @@ void contextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, u
     func[3].function = &getMouseInfo;
     
     *functions = func;
+    
+    context = ctx;
 }
 
 void contextFinalizer(FREContext ctx)
 {
-    return;
+    if (monitorId != NULL)
+    {
+        [NSEvent removeMonitor:(monitorId)];
+        monitorId = NULL;
+    }
+    
+    context = NULL;
 }
 
 //------------------------------------------------------------------------
