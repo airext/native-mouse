@@ -12,6 +12,17 @@
 
 #define EXPORT __attribute__((visibility("default")))
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    
+    void mouseEventHandler(NSEvent *event);
+    
+#ifdef __cplusplus
+}
+#endif
+
 FREObject isSupported(FREContext context, void *data, uint32_t, FREObject args[]);
 
 FREObject captureMouse(FREContext context, void *data, uint32_t, FREObject args[]);

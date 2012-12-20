@@ -16,7 +16,58 @@
 
 FREContext context;
 
-id monitorId;
+id globalMonitorId;
+
+id localMonitorId;
+
+NSEventMask FLAGS =  (NSLeftMouseDownMask | NSLeftMouseUpMask | NSRightMouseDownMask | NSRightMouseUpMask | NSMouseMovedMask | NSScrollWheelMask);
+
+//------------------------------------------------------------------------------
+//
+//	Private Functions
+//
+//------------------------------------------------------------------------------
+
+void dispatchMouseEvent(const uint8_t* code)
+{
+	FREDispatchStatusEventAsync(context, code, (const uint8_t *) "info");
+}
+
+//------------------------------------------------------------------------------
+//
+//	Event Handler
+//
+//------------------------------------------------------------------------------
+
+void mouseEventHandler(NSEvent *event)
+{
+    switch (event.type)
+    {
+        case NSMouseMoved:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Move");
+            break;
+            
+        case NSLeftMouseDown:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Down.LeftButton");
+            break;
+            
+        case NSLeftMouseUp:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Up.LeftButton");
+            break;
+            
+        case NSRightMouseDown:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Down.RightButton");
+            break;
+            
+        case NSRightMouseUp:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Up.RightButton");
+            break;
+            
+        case NSScrollWheel:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Wheel");
+            break;
+    }
+}
 
 //------------------------------------------------------------------------
 //
@@ -40,14 +91,14 @@ FREObject captureMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
 {
     FREObject result;
     
-    if (monitorId == NULL)
+    FRENewObjectFromBool((uint32_t) false, &result);
+    
+    if (globalMonitorId == NULL)
     {
-        monitorId =
-        [NSEvent addGlobalMonitorForEventsMatchingMask:
-         (NSLeftMouseDownMask | NSLeftMouseUpMask | NSRightMouseDownMask | NSRightMouseUpMask | NSMouseMovedMask | NSScrollWheelMask)
-            handler:^(NSEvent* incomingEvent)
+        globalMonitorId =
+        [NSEvent addGlobalMonitorForEventsMatchingMask: FLAGS handler:^(NSEvent* event) 
         {
-            switch ([incomingEvent type])
+            switch ([event type])
             {
                 case NSMouseMoved:
                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
@@ -77,9 +128,41 @@ FREObject captureMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
         
         FRENewObjectFromBool((uint32_t) true, &result);
     }
-    else
+    
+    if (localMonitorId == NULL)
     {
-        FRENewObjectFromBool((uint32_t) false, &result);
+        localMonitorId =
+        [NSEvent addLocalMonitorForEventsMatchingMask: FLAGS handler:^NSEvent* (NSEvent* event)
+         {
+             switch ([event type])
+             {
+                 case NSMouseMoved:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
+                     break;
+                     
+                 case NSLeftMouseDown:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.LeftButton", (const uint8_t *) "info");
+                     break;
+                     
+                 case NSLeftMouseUp:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Up.LeftButton", (const uint8_t *) "info");
+                     break;
+                     
+                 case NSRightMouseDown:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.RightButton", (const uint8_t *) "info");
+                     break;
+                     
+                 case NSRightMouseUp:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Up.RightButton", (const uint8_t *) "info");
+                     break;
+                     
+                 case NSScrollWheel:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Wheel", (const uint8_t *) "info");
+                     break;
+             }
+             
+             return event;
+         }];
     }
     
     return result;
@@ -90,16 +173,22 @@ FREObject releaseMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
 {
     FREObject result;
     
-    if (monitorId != NULL)
+    FRENewObjectFromBool((uint32_t) false, &result);
+    
+    if (globalMonitorId != NULL)
     {
-        [NSEvent removeMonitor:(monitorId)];
-        monitorId = NULL;
+        [NSEvent removeMonitor:(globalMonitorId)];
+        globalMonitorId = NULL;
         
         FRENewObjectFromBool((uint32_t) true, &result);
     }
-    else
+    
+    if (localMonitorId != NULL)
     {
-        FRENewObjectFromBool((uint32_t) false, &result);
+        [NSEvent removeMonitor:(localMonitorId)];
+        localMonitorId = NULL;
+        
+        FRENewObjectFromBool((uint32_t) true, &result);
     }
     
     return result;
@@ -110,12 +199,31 @@ FREObject getMouseInfo(FREContext ctx, void *data, uint32_t argc, FREObject argv
 {
     FREObject result = argv[0];
     
-    NSLog(@"getMouseInfo()");
-    
 	NSPoint mouse = [NSEvent mouseLocation];
     
+    NSArray* screens = [NSScreen screens];
+    
+    NSScreen* screen;
+    
+    NSUInteger count = [screens count];
+    for (NSUInteger i = 0; i < count; i++)
+    {
+        NSScreen* s = [screens objectAtIndex: i];
+        
+        if (NSMouseInRect(mouse, [s frame], NO))
+        {
+            screen = s;
+            continue;
+        }
+    }
+    
+    if (screen == NULL)
+    {
+        return result;
+    }
+    
     int32_t x = (int32_t) mouse.x;
-	int32_t y = (int32_t) mouse.y;
+	int32_t y = (int32_t) screen.frame.size.height - mouse.y;
     
 	FREObject mouseX;
 	FREObject mouseY;
@@ -168,10 +276,16 @@ void contextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, u
 
 void contextFinalizer(FREContext ctx)
 {
-    if (monitorId != NULL)
+    if (globalMonitorId != NULL)
     {
-        [NSEvent removeMonitor:(monitorId)];
-        monitorId = NULL;
+        [NSEvent removeMonitor:(globalMonitorId)];
+        globalMonitorId = NULL;
+    }
+    
+    if (localMonitorId != NULL)
+    {
+        [NSEvent removeMonitor:(localMonitorId)];
+        localMonitorId = NULL;
     }
     
     context = NULL;
