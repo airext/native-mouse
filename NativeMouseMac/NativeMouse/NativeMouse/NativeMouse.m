@@ -20,7 +20,7 @@ id globalMonitorId;
 
 id localMonitorId;
 
-NSEventMask FLAGS =  (NSLeftMouseDownMask | NSLeftMouseUpMask | NSRightMouseDownMask | NSRightMouseUpMask | NSMouseMovedMask | NSScrollWheelMask);
+NSEventMask FLAGS =  (NSLeftMouseDownMask | NSLeftMouseUpMask | NSRightMouseDownMask | NSRightMouseUpMask | NSMouseMovedMask | NSScrollWheelMask | NSLeftMouseDraggedMask);
 
 //------------------------------------------------------------------------------
 //
@@ -46,7 +46,9 @@ void mouseEventHandler(NSEvent *event)
         case NSMouseMoved:
             dispatchMouseEvent((const uint8_t*) "Mouse.Move");
             break;
-            
+        case NSLeftMouseDragged:
+            dispatchMouseEvent((const uint8_t*) "Mouse.Move");
+            break;
         case NSLeftMouseDown:
             dispatchMouseEvent((const uint8_t*) "Mouse.Down.LeftButton");
             break;
@@ -103,7 +105,9 @@ FREObject captureMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
                 case NSMouseMoved:
                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
                     break;
-                    
+                case NSLeftMouseDragged:
+                    FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
+                    break;
                 case NSLeftMouseDown:
                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.LeftButton", (const uint8_t *) "info");
                     break;
@@ -139,7 +143,9 @@ FREObject captureMouse(FREContext ctx, void *data, uint32_t argc, FREObject argv
                  case NSMouseMoved:
                      FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
                      break;
-                     
+                 case NSLeftMouseDragged:
+                     FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Move", (const uint8_t *) "info");
+                     break;
                  case NSLeftMouseDown:
                      FREDispatchStatusEventAsync(context, (const uint8_t*) "Mouse.Down.LeftButton", (const uint8_t *) "info");
                      break;
