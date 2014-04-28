@@ -10,7 +10,7 @@ Getting mouse current position through `getMouseInfo()` method:
 
 	...
 	
-	if (NativeMouse.isSupported)
+	if (NativeMouse.isSupported())
 	{
 		var info:Object = new NativeMouse().getMouseInfo();
 		
