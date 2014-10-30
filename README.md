@@ -1,6 +1,7 @@
 ## native-mouse ![License MIT](http://img.shields.io/badge/license-MIT-lightgray.svg)
 
 ![Windows](http://img.shields.io/badge/platform-windows-yellow.svg)
+![OSX](http://img.shields.io/badge/platform-osx-0971B2.svg)
 
 The NativeMouse is a simple extension for Adobe AIR for Desktop that provides information about system mouse.
 
